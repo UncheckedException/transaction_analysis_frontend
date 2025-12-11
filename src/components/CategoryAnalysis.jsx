@@ -43,18 +43,27 @@ export default function CategoryAnalysis({ transactions = [] }) {
 
   /* CATEGORY MAPPING */
   const categorized = useMemo(() => {
-    return transactions.map((t) => {
-      const n = (t.narration || "").toLowerCase();
-      let category = "Uncategorized";
+  return transactions.map((t) => {
+    const raw = (t.narration || "");
+    const n = raw.toLowerCase().replace(/\s+/g, " ").trim();
 
-      for (const [cat, keys] of Object.entries(CATEGORY_RULES)) {
-        for (const key of keys) {
-          if (n.includes(key)) category = cat;
+    let category = "Uncategorized";
+
+    outer: for (const [cat, keys] of Object.entries(CATEGORY_RULES)) {
+      for (const key of keys) {
+        const cleanKey = key.toLowerCase().replace(/\s+/g, " ").trim();
+
+        // Robust multi-word matching
+        if (cleanKey && n.includes(cleanKey)) {
+          category = cat;
+          break outer; // stop at first matching category
         }
       }
-      return { ...t, category };
-    });
-  }, [transactions]);
+    }
+
+    return { ...t, category };
+  });
+}, [transactions]);
 
   /* CATEGORY STATS */
   const categoryStats = {};

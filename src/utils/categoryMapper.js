@@ -6,7 +6,7 @@ export const CATEGORY_RULES = {
   atm: ["atm", "nwd"],
   upi: ["upi", "gpay", "google pay", "phonepe", "paytm"],
   savings: ["zerodha", "groww", "sbicap", "sbisecurity", "INDIAN CLEARING CORP", "Divident"],
-  salary: ["salary"],
+  salary: ["salary", "Apollo Healthco"],
   alcohol: ["wine", "wines", "pub", "MRP", "madhuloka"],
   cc_payment: ["SBI CARDS"]
 };
