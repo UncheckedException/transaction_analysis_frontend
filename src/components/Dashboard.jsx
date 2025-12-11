@@ -32,7 +32,7 @@ export default function Dashboard() {
     setLoading(true);
 
     console.log("Calling backend with filter: ", filter);
-
+data
     fetchTransactions(filter)
       .then((rows) => {
         console.log("Fetched:", rows);
@@ -53,8 +53,9 @@ export default function Dashboard() {
 
       <SummaryCards transactions={data} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-        <SpendingIncomeChart transactions={data} />
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4"> */}
+      <div className="mt-4">
+        {/* <SpendingIncomeChart transactions={data} /> */}
         <CategoryAnalysis transactions={data} />
       </div>
 
